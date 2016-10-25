@@ -630,14 +630,14 @@ function XLoot:SetupFrames()
 	self.closebutton = CreateFrame("Button", "XLootCloseButton", XLootFrame)
 	self.closebutton:SetScript("OnClick", function() XLoot:AutoClose(true); end)
 	self.closebutton:SetFrameLevel(8)
-	self.closebutton:SetWidth(32)
-	self.closebutton:SetHeight(32)
-	self.closebutton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up")
-	self.closebutton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down")
-	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
+	self.closebutton:SetWidth(18) --32
+	self.closebutton:SetHeight(18) --32
+	self.closebutton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Up
+	self.closebutton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Down
+	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight
 	self.closebutton:ClearAllPoints()
-	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", 12, 12) --3, 3
-	self.closebutton:SetHitRectInsets(5, 5, 5, 5)
+	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -1, -1) --12, 12
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
 	self.closebutton:Hide()
 	self:AddLootFrame(1)
 	self.frame:Hide()
