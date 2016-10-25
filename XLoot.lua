@@ -440,12 +440,12 @@ function XLoot:Update()
 		self.frame:SetBackdropColor(unpack(db.bgcolor))
 	end
 		
-	XLootFrame:SetHeight(10 + (curshift*XLootButtonFrame1:GetHeight())) --20
+	XLootFrame:SetHeight( 1 + (curshift*XLootButtonFrame1:GetHeight() )) --20  // 10
 	
 	if db.lootexpand then
 		self.loothasbeenexpanded = true
 		local fwidth, bwidth = (self.buttons[1]:GetWidth() + framewidth + 21), -(framewidth + 16)
-		self:UpdateWidths(curshift, fwidth, bwidth, fwidth+12) --24
+		self:UpdateWidths(curshift, fwidth, bwidth, fwidth + 1) --24
 	elseif self.loothasbeenexpanded then
 		self.loothasbeenexpanded = false
 		self:UpdateWidths(curshift, 200, -163, 222)
@@ -498,8 +498,8 @@ end
 function XLoot:PositionAtCursor() --Fruityloots mixup, only called if cursor snapping is enabled
 	x, y = GetCursorPosition()
 	local s = XLootFrame:GetEffectiveScale()
-	x = (x / s) - 26
-	y = (y / s) + 23
+	x = (x / s) - 20 --26
+	y = (y / s) + 20 --23
 	local screenWidth = GetScreenWidth()
 	if (UIParent:GetWidth() > screenWidth) then screenWidth = UIParent:GetWidth() end
 	local screenHeight = GetScreenHeight()
@@ -548,7 +548,7 @@ function XLoot:AddLootFrame(id)
 	button:ClearAllPoints()
 	frame:ClearAllPoints()
 	if (id == 1) then 
-		frame:SetPoint("TOPLEFT", self.frame, "TOPLEFT", 6, -5) --10, -10
+		frame:SetPoint("TOPLEFT", self.frame, "TOPLEFT", 0, 0) --10, -10  // 6, -5
 	else
 		frame:SetPoint("TOPLEFT", self.frames[id-1], "BOTTOMLEFT")
 	end
