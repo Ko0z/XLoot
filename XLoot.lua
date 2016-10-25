@@ -688,7 +688,7 @@ end
 
 function XLoot:BackdropFrame(frame, bgcolor, bordercolor)
 	frame:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", --Interface/Tooltips/UI-Tooltip-Background
-                                            edgeFile = "Interface\\AddOns\\pfUI\\img\\border", --Interface/Tooltips/UI-Tooltip-Border
+                                            edgeFile = "Interface\\AddOns\\pfUI\\img\\border_col", --Interface/Tooltips/UI-Tooltip-Border
                                             tile = true, tileSize = 8, edgeSize = 8, 
                                             insets = { left = 0, right = 0, top = 0, bottom = 0 }})
  	frame:SetBackdropColor(unpack(bgcolor))
