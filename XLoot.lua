@@ -626,18 +626,27 @@ function XLoot:SetupFrames()
    
    self.frame:SetScale(self.db.profile.scale)
     
-   	-- Close button
+   	-- Close button,
 	self.closebutton = CreateFrame("Button", "XLootCloseButton", XLootFrame)
 	self.closebutton:SetScript("OnClick", function() XLoot:AutoClose(true); end)
 	self.closebutton:SetFrameLevel(8)
-	self.closebutton:SetWidth(18) --32
-	self.closebutton:SetHeight(18) --32
-	self.closebutton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Up
-	self.closebutton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Down
-	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight
 	self.closebutton:ClearAllPoints()
-	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -1, -1) --12, 12
-	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
+	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT")
+	self.closebutton:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", tile = true, tileSize = 8,
+								edgeFile = "Interface\\AddOns\\pfUI\\img\\border", edgeSize = 8,
+								 insets = {left = 0, right = 0, top = 0, bottom = 0 }})
+	self.closebutton:SetWidth(12)
+	self.closebutton:SetHeight(12)
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0)
+	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
+	self.closebutton.texture = self.closebutton:CreateTexture("pfBagClose")
+    	self.closebutton.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close") 
+	self.closebutton.texture:SetWidth(8) 
+	self.closebutton.texture:SetHeight(8) 
+	self.closebutton.texture:ClearAllPoints()
+	self.closebutton.texture:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -2, -2) 
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) 
+	self.closebutton.texture:SetVertexColor(1,.25,.25,1) 
 	self.closebutton:Hide()
 	self:AddLootFrame(1)
 	self.frame:Hide()
