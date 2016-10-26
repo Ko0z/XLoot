@@ -9,3 +9,5 @@ IMPORTANT: YOU WILL NEED pfUI by Shagu in order for this addon to work. https://
 Rename the addon to just Xloot without the "-master" and put it in .../World of Warcraft/Interface/Addons.
 
 Please note that I dont take credit for either art or code.
+
+<a href="http://imgur.com/c1kKjYN"><img src="http://i.imgur.com/c1kKjYN.png" title="source: imgur.com" /></a>
