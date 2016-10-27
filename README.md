@@ -10,4 +10,4 @@ Rename the addon to just Xloot without the "-master" and put it in .../World of 
 
 Please note that I dont take credit for either art or code.
 
-<a href="http://imgur.com/gdNrA64"><img src="http://i.imgur.com/gdNrA64.png" title="source: imgur.com" /></a>
+<a href="http://imgur.com/3ahNHHe"><img src="http://i.imgur.com/3ahNHHe.png" title="source: imgur.com" /></a>
