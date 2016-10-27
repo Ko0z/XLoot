@@ -400,7 +400,7 @@ function XLoot:Update()
 			if db.texcolor and LootSlotIsItem(slot) and quality > 1 then
 				local r, g, b, hex = GetItemQualityColor(quality)
 				button.border:SetVertexColor(r, g, b)
-				button.border:Show() -- Show()
+				button.border:Show() 
 			else
 				button.border:Hide()
 			end
@@ -441,12 +441,12 @@ function XLoot:Update()
 		self.frame:SetBackdropColor(unpack(db.bgcolor))
 	end
 		
-	XLootFrame:SetHeight( 1 + (curshift*XLootButtonFrame1:GetHeight() )) --20  // 10
+	XLootFrame:SetHeight( 1 + (curshift*XLootButtonFrame1:GetHeight() )) 
 	
 	if db.lootexpand then
 		self.loothasbeenexpanded = true
 		local fwidth, bwidth = (self.buttons[1]:GetWidth() + framewidth + 21), -(framewidth + 16)
-		self:UpdateWidths(curshift, fwidth, bwidth, fwidth + 1) --24
+		self:UpdateWidths(curshift, fwidth, bwidth, fwidth + 1) 
 	elseif self.loothasbeenexpanded then
 		self.loothasbeenexpanded = false
 		self:UpdateWidths(curshift, 200, -163, 222)
@@ -499,8 +499,8 @@ end
 function XLoot:PositionAtCursor() --Fruityloots mixup, only called if cursor snapping is enabled
 	x, y = GetCursorPosition()
 	local s = XLootFrame:GetEffectiveScale()
-	x = (x / s) - 20 --26
-	y = (y / s) + 20 --23
+	x = (x / s) - 20 
+	y = (y / s) + 20 
 	local screenWidth = GetScreenWidth()
 	if (UIParent:GetWidth() > screenWidth) then screenWidth = UIParent:GetWidth() end
 	local screenHeight = GetScreenHeight()
@@ -553,7 +553,7 @@ function XLoot:AddLootFrame(id)
 	button:ClearAllPoints()
 	frame:ClearAllPoints()
 	if (id == 1) then 
-		frame:SetPoint("TOPLEFT", self.frame, "TOPLEFT", 0, 0) --10, -10  // 6, -5
+		frame:SetPoint("TOPLEFT", self.frame, "TOPLEFT", 0, 0) 
 	else
 		frame:SetPoint("TOPLEFT", self.frames[id-1], "BOTTOMLEFT")
 	end
@@ -576,8 +576,6 @@ function XLoot:AddLootFrame(id)
  		self:BackdropFrame(frame, self.db.profile.lootbgcolor, self.db.profile.lootbordercolor)
 		self:oSkinTooltipModded(frame)
  	end
-	--frame:SetBackdropColor(unpack(self.db.profile.lootbgcolor))
-	--frame:SetBackdropBorderColor(unpack(self.db.profile.lootbordercolor))
 	button:DisableDrawLayer("ARTWORK")
 	button:Hide()
 	frame:Hide()
@@ -615,7 +613,6 @@ function XLoot:SetupFrames()
 	self.frame:SetScript("OnDragStart", function() XLoot:DragStart() end)
 	self.frame:SetScript("OnDragStop", function() XLoot:DragStop() end)
 	self.frame:SetScript("OnHide", function() XLoot:OnHide() end)
-	--self.frame:IsToplevel(1)
 	self:BackdropFrame(self.frame, self.db.profile.bgcolor, self.db.profile.bordercolor)
    	self.frame:ClearAllPoints()
    	if not self.db.profile.cursor then
@@ -636,29 +633,22 @@ function XLoot:SetupFrames()
 	self.closebutton:SetScript("OnClick", function() XLoot:AutoClose(true); end)
 	self.closebutton:SetFrameLevel(8)
 	self.closebutton:ClearAllPoints()
-	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT") --12, 12
+	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT") 
 	self.closebutton:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", tile = true, tileSize = 8,
 								edgeFile = "Interface\\AddOns\\pfUI\\img\\border", edgeSize = 8,
 								 insets = {left = 0, right = 0, top = 0, bottom = 0 }})
-	self.closebutton:SetWidth(12) --32
-	self.closebutton:SetHeight(12) --32
-	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
+	self.closebutton:SetWidth(12) 
+	self.closebutton:SetHeight(12) 
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) 
 	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
-
-	self.closebutton.texture = self.closebutton:CreateTexture("pfBagClose") -- ADDED
-    self.closebutton.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close") --ADDED
-	-- self.closebutton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Up
-	-- self.closebutton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Down
-	--self.closebutton.texture:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight
-	self.closebutton.texture:SetWidth(8) --32
-	self.closebutton.texture:SetHeight(8) --32
-	
+	self.closebutton.texture = self.closebutton:CreateTexture("pfBagClose") 
+    self.closebutton.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close") 
+	self.closebutton.texture:SetWidth(8) 
+	self.closebutton.texture:SetHeight(8) 
 	self.closebutton.texture:ClearAllPoints()
-	self.closebutton.texture:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -2, -2) --12, 12 
-	--self.closebutton:ClearAllPoints() TEST
-	
-	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
-	self.closebutton.texture:SetVertexColor(1,.25,.25,1) -- ADDED
+	self.closebutton.texture:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -2, -2) 
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) 
+	self.closebutton.texture:SetVertexColor(1,.25,.25,1) 
 	self.closebutton:Hide()
 	self:AddLootFrame(1)
 	self.frame:Hide()
@@ -708,8 +698,8 @@ function XLoot:QualityBorder(button)
 end
 
 function XLoot:BackdropFrame(frame, bgcolor, bordercolor)
-	frame:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", --Interface/Tooltips/UI-Tooltip-Background
-                                            edgeFile = "Interface\\AddOns\\pfUI\\img\\border_col", --Interface/Tooltips/UI-Tooltip-Border
+	frame:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", 
+                                            edgeFile = "Interface\\AddOns\\pfUI\\img\\border_col", 
                                             tile = true, tileSize = 8, edgeSize = 8, 
                                             insets = { left = 0, right = 0, top = 0, bottom = 0 }})
  	frame:SetBackdropColor(unpack(bgcolor))
