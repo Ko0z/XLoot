@@ -36,7 +36,7 @@ function XLoot:OnInitialize()
 		lootqualityborder = true,
 		qualitytext = false,
 		infotext = true,
-		oskin = true,
+		oskin = false,
 		lock = false,
 		pos = { x = (UIParent:GetWidth()/2), y = (UIParent:GetHeight()/2) },
 		bgcolor = { 0, 0, 0, .7 },
@@ -393,6 +393,7 @@ function XLoot:Update()
 			end
 			if db.lootqualityborder then
 				frame:SetBackdropBorderColor(color.r, color.g, color.b, 1)
+				button:SetBackdropBorderColor(color.r, color.g, color.b, 1) -- Color on Loot Icon Border by Quality
 			else
 				frame:SetBackdropBorderColor(unpack(db.lootbordercolor))
 			end
@@ -539,7 +540,11 @@ function XLoot:AddLootFrame(id)
 	buttonquality:SetWidth(155)
 	buttonquality:SetHeight(10)
 	buttontext:SetHeight(10)
+	button:IsToplevel(1)
 	buttonquality:SetPoint("TOPLEFT", button, "TOPLEFT", 45, -3)
+	button:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", tile = true, tileSize = 8,
+								edgeFile = "Interface\\AddOns\\pfUI\\img\\border_col", edgeSize = 8,
+								 insets = {left = 0, right = 0, top = 0, bottom = 0 }})
 	button:SetHitRectInsets(0, -165, 0, -1)
 	-- End template
 	local border = self:QualityBorder(button)
@@ -624,29 +629,36 @@ function XLoot:SetupFrames()
 		self:oSkinTooltipModded(XLootFrame)
 	end
    
-   self.frame:SetScale(self.db.profile.scale)
+    self.frame:SetScale(self.db.profile.scale)
     
-   	-- Close button,
+   	-- Close button,  for help see /pfUI/modules/bags.lua , line 400+
 	self.closebutton = CreateFrame("Button", "XLootCloseButton", XLootFrame)
 	self.closebutton:SetScript("OnClick", function() XLoot:AutoClose(true); end)
 	self.closebutton:SetFrameLevel(8)
 	self.closebutton:ClearAllPoints()
-	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT")
+	self.closebutton:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT") --12, 12
 	self.closebutton:SetBackdrop({bgFile = "Interface\\AddOns\\pfUI\\img\\bg", tile = true, tileSize = 8,
 								edgeFile = "Interface\\AddOns\\pfUI\\img\\border", edgeSize = 8,
 								 insets = {left = 0, right = 0, top = 0, bottom = 0 }})
-	self.closebutton:SetWidth(12)
-	self.closebutton:SetHeight(12)
-	self.closebutton:SetHitRectInsets(0, 0, 0, 0)
+	self.closebutton:SetWidth(12) --32
+	self.closebutton:SetHeight(12) --32
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
 	self.closebutton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
-	self.closebutton.texture = self.closebutton:CreateTexture("pfBagClose")
-    	self.closebutton.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close") 
-	self.closebutton.texture:SetWidth(8) 
-	self.closebutton.texture:SetHeight(8) 
+
+	self.closebutton.texture = self.closebutton:CreateTexture("pfBagClose") -- ADDED
+    self.closebutton.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close") --ADDED
+	-- self.closebutton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Up
+	-- self.closebutton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Down
+	--self.closebutton.texture:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight") -- old = Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight
+	self.closebutton.texture:SetWidth(8) --32
+	self.closebutton.texture:SetHeight(8) --32
+	
 	self.closebutton.texture:ClearAllPoints()
-	self.closebutton.texture:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -2, -2) 
-	self.closebutton:SetHitRectInsets(0, 0, 0, 0) 
-	self.closebutton.texture:SetVertexColor(1,.25,.25,1) 
+	self.closebutton.texture:SetPoint("TOPRIGHT", XLootFrame, "TOPRIGHT", -2, -2) --12, 12 
+	--self.closebutton:ClearAllPoints() TEST
+	
+	self.closebutton:SetHitRectInsets(0, 0, 0, 0) -- all 5
+	self.closebutton.texture:SetVertexColor(1,.25,.25,1) -- ADDED
 	self.closebutton:Hide()
 	self:AddLootFrame(1)
 	self.frame:Hide()
@@ -685,7 +697,7 @@ end
 
 function XLoot:QualityBorder(button)
 	local border = button:CreateTexture(button:GetName() .. "QualBorder", "OVERLAY")
-	border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+	--border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border") 
 	border:SetBlendMode("ADD")
 	border:SetAlpha(0.9)
 	border:SetHeight(button:GetHeight()*1.8)
